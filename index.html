@@ -1,0 +1,878 @@
+<!-- Индексный HTML-файл сайта "Safety First". Комментарии добавлены для пояснения структуры и логики. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safety First: Violence & Abuse Awareness</title>
+    <!-- Блок CSS-стилей: переменные темы, базовая стилизация элементов и адаптивный дизайн -->
+    <style>
+        :root {
+            --primary-pink: #e84393;
+            --light-pink: #fd79a8;
+            --very-light-pink: #ffeef2;
+            --dark-pink: #b83b5e;
+            --text-color: #333;
+            --white: #fff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--very-light-pink);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-pink), var(--dark-pink));
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        nav {
+            background-color: var(--dark-pink);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-weight: bold;
+            color: var(--white);
+            text-decoration: none;
+            padding: 1rem 0;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li a {
+            color: var(--white);
+            text-decoration: none;
+            padding: 1rem;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links li a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .section-title {
+            color: var(--dark-pink);
+            margin: 2rem 0 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100px;
+            height: 3px;
+            background-color: var(--light-pink);
+        }
+        
+        .card {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .hotline-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .hotline-card {
+            background-color: var(--white);
+            border-left: 5px solid var(--primary-pink);
+            padding: 1rem;
+            border-radius: 5px;
+        }
+        
+        .hotline-number {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-pink);
+            margin: 0.5rem 0;
+        }
+        
+        .self-defense-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .technique-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .technique-content {
+            padding: 1.5rem;
+        }
+        
+        .technique-img {
+            background-color: #f0f0f0;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .resource-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .resource-card h3 {
+            color: var(--dark-pink);
+            margin-bottom: 0.5rem;
+        }
+        
+        .resource-link {
+            margin-top: auto;
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: var(--light-pink);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+        
+        .resource-link:hover {
+            background-color: var(--primary-pink);
+        }
+        
+        .emergency-banner {
+            background-color: var(--primary-pink);
+            color: var(--white);
+            text-align: center;
+            padding: 1rem;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        footer {
+            background-color: var(--dark-pink);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .social-links {
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            margin: 0 0.5rem;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            margin: 10% auto;
+            padding: 2rem;
+            border-radius: 5px;
+            max-width: 600px;
+            position: relative;
+        }
+        
+        .close-button {
+            position: absolute;
+            right: 1rem;
+            top: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .quick-exit {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--dark-pink);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            z-index: 999;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .accordion {
+            background-color: var(--very-light-pink);
+            color: var(--text-color);
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            transition: 0.4s;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .active, .accordion:hover {
+            background-color: var(--light-pink);
+            color: white;
+        }
+        
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+            border-radius: 0 0 5px 5px;
+            margin-bottom: 10px;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                padding: 0;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="quick-exit" id="quickExit">Quick Exit</button>
+    
+    <div class="emergency-banner">
+        In immediate danger? Call emergency services: <strong>911</strong>
+    </div>
+    
+    <header>
+        <div class="header-content">
+            <h1>Safety First</h1>
+            <p>Violence & Abuse Awareness Resource Center</p>
+        </div>
+        <img src="images/header-background.jpg" alt="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.2;">
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Safety First</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#types">Types of Abuse</a></li>
+                <li><a href="#hotlines">Hotlines</a></li>
+                <li><a href="#self-defense">Self-Defense</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#readme">README</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <!-- Раздел "О насилии и злоупотреблениях" -->
+        <section id="about">
+            <h2 class="section-title">About Violence & Abuse</h2>
+            <div class="card">
+                <p>Violence and abuse can affect anyone regardless of age, gender, race, or economic status. It takes many forms including physical, emotional, sexual, financial, and digital abuse. Understanding the signs and having resources can help prevent abuse and support those affected.</p>
+                <p>This website provides information and resources for everyone. Whether you're seeking help for yourself, supporting someone else, or simply want to learn more about these issues, you've come to the right place.</p>
+                <p><strong>Remember:</strong> You are not alone, and help is available.</p>
+            </div>
+        </section>
+        
+        <!-- Раздел "Типы насилия" -->
+        <section id="types">
+            <h2 class="section-title">Types of Abuse</h2>
+            
+            <button class="accordion">Physical Abuse</button>
+            <div class="panel">
+                <p>Physical abuse involves the use of physical force against someone in a way that injures or endangers that person. Examples include hitting, kicking, burning, choking, or any other harmful physical contact.</p>
+                <p><strong>Warning Signs:</strong> Unexplained injuries, frequent injuries, fearfulness, withdrawal, wearing clothes to hide injuries even in warm weather.</p>
+            </div>
+            
+            <button class="accordion">Emotional/Psychological Abuse</button>
+            <div class="panel">
+                <p>Emotional abuse involves behaviors that harm another person mentally or emotionally. This can include verbal aggression, intimidation, manipulation, humiliation, isolation, and controlling behaviors.</p>
+                <p><strong>Warning Signs:</strong> Low self-esteem, excessive fear, anxiety or depression, decreased socialization, personality changes.</p>
+            </div>
+            
+            <button class="accordion">Sexual Abuse</button>
+            <div class="panel">
+                <p>Sexual abuse is unwanted sexual activity, with perpetrators using force, making threats, or taking advantage of individuals not able to give consent.</p>
+                <p><strong>Warning Signs:</strong> Fear of specific people or places, sleep disturbances, self-harm, withdrawal, inappropriate sexual knowledge or behavior.</p>
+            </div>
+            
+            <button class="accordion">Financial Abuse</button>
+            <div class="panel">
+                <p>Financial abuse involves controlling a person's ability to acquire, use, or maintain financial resources. This can include preventing someone from working, stealing money, or racking up debt in their name.</p>
+                <p><strong>Warning Signs:</strong> Unexplained withdrawals from accounts, missing money or valuables, unpaid bills, sudden changes in financial documents.</p>
+            </div>
+            
+            <button class="accordion">Digital Abuse</button>
+            <div class="panel">
+                <p>Digital abuse uses technology and the internet to bully, harass, stalk, or intimidate. This can include unwanted texting, hacking accounts, tracking locations, or spreading damaging content online.</p>
+                <p><strong>Warning Signs:</strong> Partner demands passwords, controls social media use, sends threatening messages, uses technology to monitor activities.</p>
+            </div>
+        </section>
+        
+        <!-- Раздел "Горячие линии" -->
+        <section id="hotlines">
+            <h2 class="section-title">Hotlines & Help Resources</h2>
+            <div class="card">
+                <p>These confidential hotlines provide 24/7 support, information, and resources for anyone affected by violence or abuse. All calls are confidential and many offer services in multiple languages.</p>
+                
+                <div class="hotline-container">
+                    <div class="hotline-card">
+                        <h3>National Domestic Violence Hotline</h3>
+                        <p class="hotline-number">1-800-799-SAFE (7233)</p>
+                        <p>24/7 support, crisis intervention, safety planning, and referrals to local services.</p>
+                    </div>
+                    
+                    <div class="hotline-card">
+                        <h3>RAINN (Sexual Assault)</h3>
+                        <p class="hotline-number">1-800-656-HOPE (4673)</p>
+                        <p>Connects callers to local sexual assault service providers with trained staff members.</p>
+                    </div>
+                    
+                    <div class="hotline-card">
+                        <h3>National Child Abuse Hotline</h3>
+                        <p class="hotline-number">1-800-4-A-CHILD (422-4453)</p>
+                        <p>Professional crisis counselors for children, parents, and concerned individuals.</p>
+                    </div>
+                    
+                    <div class="hotline-card">
+                        <h3>Crisis Text Line</h3>
+                        <p class="hotline-number">Text HOME to 741741</p>
+                        <p>Free 24/7 support via text message for those in crisis.</p>
+                    </div>
+                    
+                    <div class="hotline-card">
+                        <h3>National Suicide Prevention Lifeline</h3>
+                        <p class="hotline-number">988 or 1-800-273-TALK (8255)</p>
+                        <p>Support for people in distress and those around them.</p>
+                    </div>
+                    
+                    <div class="hotline-card">
+                        <h3>StrongHearts Native Helpline</h3>
+                        <p class="hotline-number">1-844-762-8483</p>
+                        <p>Domestic violence and dating violence helpline for Native Americans.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Раздел "Самооборона" -->
+        <section id="self-defense">
+            <h2 class="section-title">Self-Defense Techniques</h2>
+            <div class="card">
+                <p>Learning basic self-defense can increase confidence and provide tools to protect yourself in threatening situations. Remember: the goal of self-defense is to get away safely, not to engage in a fight.</p>
+                <p><strong>Disclaimer:</strong> These techniques are for educational purposes only. Taking a formal self-defense class with qualified instructors is recommended.</p>
+                
+                <div class="self-defense-grid">
+                    <div class="technique-card">
+                        <img src="images/stance.jpg" alt="Proper stance for self-defense" class="technique-img">
+                        <div class="technique-content">
+                            <h3>Proper Stance</h3>
+                            <p>Stand with feet shoulder-width apart, knees slightly bent, hands raised to protect your face, one foot slightly in front of the other for balance.</p>
+                            <p>This stance lowers your center of gravity, making you harder to knock over and ready to move quickly in any direction.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="technique-card">
+                        <img src="images/wrist-release.jpg" alt="Wrist release self-defense technique" class="technique-img">
+                        <div class="technique-content">
+                            <h3>Wrist Release</h3>
+                            <p>If someone grabs your wrist, quickly rotate your arm toward their thumb (the weakest part of their grip), while simultaneously pulling your arm away.</p>
+                            <p>Practice this motion to develop muscle memory so it becomes instinctive when needed.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="technique-card">
+                        <img src="images/vulnerable-points.jpg" alt="Vulnerable points diagram for self-defense" class="technique-img">
+                        <div class="technique-content">
+                            <h3>Vulnerable Points</h3>
+                            <p>If you need to defend yourself, target vulnerable areas: eyes, nose, throat, groin, and knees. Using the heel of your palm to strike upward at the nose or using your knee can be effective.</p>
+                            <p>Remember, the goal is to create an opportunity to escape, not to continue fighting.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="technique-card">
+                        <img src="images/voice-technique.jpg" alt="Using your voice as a self-defense technique" class="technique-img">
+                        <div class="technique-content">
+                            <h3>Use Your Voice</h3>
+                            <p>Yell "NO!" or "BACK OFF!" in a commanding voice. This can startle an attacker and attract attention from others who might help.</p>
+                            <p>Practice projecting your voice from your diaphragm rather than your throat for maximum volume and impact.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Safety Planning</h3>
+                <p>Creating a safety plan is crucial for those at risk of violence:</p>
+                <ul>
+                    <li>Know the safest rooms in your home (rooms with exits and phones)</li>
+                    <li>Have emergency contacts saved under code names</li>
+                    <li>Keep important documents, some money, and necessities packed</li>
+                    <li>Share your safety concerns with trusted friends or neighbors</li>
+                    <li>Practice exit routes and safety plans regularly</li>
+                </ul>
+                
+                <button id="safetyPlanBtn" class="resource-link" style="margin-top: 1rem;">Create Personal Safety Plan</button>
+            </div>
+        </section>
+        
+        <!-- Раздел "Дополнительные ресурсы" -->
+        <section id="resources">
+            <h2 class="section-title">Additional Resources</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3>Identifying Warning Signs</h3>
+                    <p>Learn about early warning signs of abusive relationships and behaviors that might escalate to violence.</p>
+                    <a href="#" class="resource-link" id="warningSignsBtn">Read More</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>How to Help Someone</h3>
+                    <p>Guidelines for supporting someone who may be experiencing abuse while respecting their autonomy.</p>
+                    <a href="#" class="resource-link" id="helpSomeoneBtn">Read More</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>Legal Resources</h3>
+                    <p>Information about protective orders, pressing charges, and your legal rights when dealing with abuse.</p>
+                    <a href="#" class="resource-link" id="legalResourcesBtn">Read More</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>Healing & Recovery</h3>
+                    <p>Resources for mental health support, therapy options, and recovery programs for survivors.</p>
+                    <a href="#" class="resource-link" id="healingBtn">Read More</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Раздел "README — документация проекта" -->
+        <section id="readme">
+            <h2 class="section-title">README Documentation</h2>
+            <div class="card">
+                <h3>Project Overview</h3>
+                <p>This website serves as an educational resource on violence and abuse awareness. It provides vital information about different types of abuse, self-defense techniques, emergency hotlines, and additional resources for those in need. The design features a pink color scheme for a compassionate, approachable interface.</p>
+                
+                <h3>Purpose</h3>
+                <p>This website was created for a school presentation on violence and abuse awareness. Its goal is to:</p>
+                <ul>
+                    <li>Educate users about different forms of abuse</li>
+                    <li>Provide self-defense techniques and safety planning information</li>
+                    <li>List emergency hotlines and support resources</li>
+                    <li>Offer guidance on how to help others who may be experiencing abuse</li>
+                </ul>
+                
+                <h3>Features</h3>
+                <p><strong>Responsive Design:</strong> Works on desktop, tablet, and mobile devices</p>
+                <p><strong>Quick Exit Button:</strong> Allows users to quickly navigate away for safety</p>
+                <p><strong>Interactive Elements:</strong></p>
+                <ul>
+                    <li>Accordion sections for types of abuse</li>
+                    <li>Modal pop-ups for detailed information</li>
+                    <li>Smooth scrolling navigation</li>
+                </ul>
+                <p><strong>Resource Directory:</strong> Contact information for national hotlines</p>
+                <p><strong>Self-Defense Section:</strong> Basic techniques explained with descriptions</p>
+                
+                <h3>Technical Implementation</h3>
+                <p>The website is built using:</p>
+                <ul>
+                    <li><strong>HTML5:</strong> For structure and content</li>
+                    <li><strong>CSS3:</strong> For styling and responsive design</li>
+                    <li><strong>JavaScript:</strong> For interactive features (accordions, modals, quick exit)</li>
+                </ul>
+                <p>All code is contained in a single file for simplicity and ease of deployment.</p>
+                
+                <h3>How to Use</h3>
+                
+                <h4>Local Deployment</h4>
+                <ol>
+                    <li>Save the <code>index.html</code> file to your local computer</li>
+                    <li>Open the file in any modern web browser (Chrome, Firefox, Safari, Edge)</li>
+                    <li>The website should display with full functionality</li>
+                </ol>
+                
+                <h4>Web Hosting</h4>
+                <p>To make the website available online:</p>
+                <ol>
+                    <li>Upload the <code>index.html</code> file to any web hosting service</li>
+                    <li>Alternatively, use free hosting services like GitHub Pages, Netlify, or Vercel</li>
+                </ol>
+                
+                <h4>Presentation Usage</h4>
+                <p>For presenting this website in a school setting:</p>
+                <ol>
+                    <li>Open the file locally in a web browser</li>
+                    <li>Walk through each section to demonstrate the content</li>
+                    <li>Show interactive elements (accordions, modal pop-ups)</li>
+                    <li>Highlight the emergency resources and safety planning sections</li>
+                </ol>
+                
+                <h3>Customization</h3>
+                <p>To customize the website for different needs:</p>
+                
+                <h4>Content Modifications</h4>
+                <ul>
+                    <li>Update text between paragraph tags (<code>&lt;p&gt;...&lt;/p&gt;</code>)</li>
+                    <li>Modify hotline numbers for region-specific information</li>
+                    <li>Add or remove sections as needed</li>
+                </ul>
+                
+                <h4>Style Changes</h4>
+                <p>Edit the CSS variables at the top of the style section to change the color scheme:</p>
+                <pre><code style="display: block; background-color: #f5f5f5; padding: 10px; border-radius: 5px; overflow-x: auto;">:root {
+    --primary-pink: #e84393;
+    --light-pink: #fd79a8;
+    --very-light-pink: #ffeef2;
+    --dark-pink: #b83b5e;
+    --text-color: #333;
+    --white: #fff;
+}</code></pre>
+                
+                <h3>Important Notes</h3>
+                <ul>
+                    <li>This website is for educational purposes only</li>
+                    <li>The self-defense techniques described should be practiced with qualified instructors</li>
+                    <li>Emergency numbers listed are for the United States; replace with appropriate numbers for other regions</li>
+                    <li>The Quick Exit button is set to redirect to weather.com - this can be changed to any neutral website</li>
+                </ul>
+                
+                <h3>Accessibility Considerations</h3>
+                <p>The website implements:</p>
+                <ul>
+                    <li>Semantic HTML structure</li>
+                    <li>Contrasting colors for readability</li>
+                    <li>Keyboard-navigable interactive elements</li>
+                </ul>
+                
+                <h3>Future Enhancements</h3>
+                <p>Potential improvements for future versions:</p>
+                <ul>
+                    <li>Multi-language support</li>
+                    <li>Printable resources</li>
+                    <li>Local resource finder based on user location</li>
+                    <li>Anonymous chat support integration</li>
+                    <li>More detailed self-defense tutorials with images</li>
+                </ul>
+                
+                <h3>Image Instructions</h3>
+                <p>To add images to this website:</p>
+                <ol>
+                    <li>Create an "images" folder in the same directory as your index.html file</li>
+                    <li>Download suitable images from free stock photo sites like Unsplash, Pexels, or Pixabay</li>
+                    <li>Save images with these filenames:
+                        <ul>
+                            <li>stance.jpg - Showing proper self-defense stance</li>
+                            <li>wrist-release.jpg - Demonstrating wrist release technique</li>
+                            <li>vulnerable-points.jpg - Diagram of vulnerable points on the body</li>
+                            <li>voice-technique.jpg - Person demonstrating vocal self-defense</li>
+                            <li>header-background.jpg - Subtle background image for the header</li>
+                        </ul>
+                    </li>
+                </ol>
+                
+                <h3>Content Warning</h3>
+                <p>This website contains information about sensitive topics including domestic violence, sexual assault, and abuse. The content is presented educationally but may be triggering for some users.</p>
+                
+                <p><em>Created for educational purposes. If you or someone you know is in immediate danger, please call your local emergency services or one of the hotlines listed on the website.</em></p>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Modals -->
+    <div id="safetyPlanModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Creating a Personal Safety Plan</h2>
+            <p>A safety plan is a personalized, practical plan that includes ways to remain safe while in a relationship, planning to leave, or after you leave.</p>
+            <h3>If you are still in an abusive relationship:</h3>
+            <ul>
+                <li>Identify safe areas of your home where there are no weapons and there are ways to escape. If arguments occur, try to move to those areas.</li>
+                <li>Keep a phone accessible at all times and know what numbers to call for help.</li>
+                <li>Let trusted friends and neighbors know about your situation and develop a visual or verbal signal to notify them when you need help.</li>
+                <li>Practice how to get out safely. Practice with your children if applicable.</li>
+                <li>Plan for what you will do if your abuser finds out about your plan.</li>
+                <li>Keep weapons like guns and knives locked away and as inaccessible as possible.</li>
+            </ul>
+            <h3>If you are planning to leave:</h3>
+            <ul>
+                <li>Create a "go bag" with important items you'll need when leaving.</li>
+                <li>Hide essential items with friends or family so they're not discovered.</li>
+                <li>Open a savings account in your own name.</li>
+                <li>Leave money, an extra set of keys, copies of important documents, extra medicines, and clothes with someone you trust.</li>
+                <li>Determine who would be able to let you stay with them or lend you money.</li>
+                <li>If possible, open a post office box or use a safe address for receiving mail.</li>
+            </ul>
+            <h3>Documents to take with you:</h3>
+            <ul>
+                <li>Identification for yourself and your children</li>
+                <li>Birth certificates, social security cards, insurance cards</li>
+                <li>Medical records</li>
+                <li>School records</li>
+                <li>Money, bankbooks, credit cards, ATM cards</li>
+                <li>Legal papers: protective order, lease or home deed, car registration</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div id="warningSignsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Warning Signs of Abuse</h2>
+            <p>Recognizing the warning signs of abuse is the first step toward getting help. Be aware that abusers often begin with subtle behaviors that escalate over time.</p>
+            <h3>Early Warning Signs:</h3>
+            <ul>
+                <li>Extreme jealousy or possessiveness</li>
+                <li>Controlling behavior (checking your phone, monitoring where you go)</li>
+                <li>Isolating you from friends and family</li>
+                <li>Moving too quickly in the relationship</li>
+                <li>Blaming others for their problems or feelings</li>
+                <li>Hypersensitivity to small slights</li>
+                <li>Cruelty to animals or children</li>
+                <li>Using "playful" force during sex</li>
+                <li>Pressuring you to use alcohol or drugs</li>
+                <li>Extreme mood swings or unpredictable behavior</li>
+            </ul>
+            <h3>As Abuse Escalates:</h3>
+            <ul>
+                <li>Intimidation and threats</li>
+                <li>Destroying property</li>
+                <li>Using children to control or manipulate</li>
+                <li>Economic control or financial abuse</li>
+                <li>Forced sex or sexual abuse</li>
+                <li>Physical violence of any kind</li>
+            </ul>
+            <p><strong>Remember:</strong> No one deserves to be abused. The abuse is NEVER your fault, regardless of what the abuser may say.</p>
+        </div>
+    </div>
+    
+    <div id="helpSomeoneModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>How to Help Someone Experiencing Abuse</h2>
+            <p>Supporting someone who is experiencing abuse requires sensitivity, patience, and respect for their autonomy. Here's how you can help:</p>
+            <h3>Dos:</h3>
+            <ul>
+                <li>Listen without judgment. Believe them.</li>
+                <li>Validate their feelings and experiences.</li>
+                <li>Let them know the abuse is not their fault.</li>
+                <li>Offer specific help ("Can I drive you to appointments?" instead of "Let me know if you need anything.")</li>
+                <li>Provide information about resources, but let them decide what to use.</li>
+                <li>Respect their decisions, even if you don't agree.</li>
+                <li>Continue to be supportive, regardless of their choices.</li>
+                <li>Help them create a safety plan if they're ready.</li>
+            </ul>
+            <h3>Don'ts:</h3>
+            <ul>
+                <li>Don't pressure them to leave if they're not ready.</li>
+                <li>Don't criticize or blame them for staying.</li>
+                <li>Don't speak negatively about the abuser (this can make them defensive).</li>
+                <li>Don't take control away from them by making decisions for them.</li>
+                <li>Don't give ultimatums or conditions for your support.</li>
+                <li>Don't put yourself in danger by directly confronting the abuser.</li>
+            </ul>
+            <p><strong>Remember:</strong> On average, it takes 7 attempts before someone leaves an abusive relationship permanently. Be patient and consistently supportive through this process.</p>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <p>Safety First: Violence & Abuse Awareness</p>
+            <p>This website is for educational purposes. If you are in immediate danger, please call 911.</p>
+            <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">Instagram</a>
+            </div>
+            <p>&copy; 2025 Safety First. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Блок JavaScript: функциональность "Quick Exit", аккордеоны, модальные окна и плавная прокрутка -->
+    <script>
+        // Quick Exit Button
+        document.getElementById('quickExit').addEventListener('click', function() {
+            window.location.href = 'https://weather.com';
+        });
+        
+        // Accordion functionality
+        const accordions = document.getElementsByClassName("accordion");
+        for (let i = 0; i < accordions.length; i++) {
+            accordions[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                const panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
+        }
+        
+        // Modal functionality
+        const modals = {
+            safetyPlan: document.getElementById('safetyPlanModal'),
+            warningSigns: document.getElementById('warningSignsModal'),
+            helpSomeone: document.getElementById('helpSomeoneModal')
+        };
+        
+        const buttons = {
+            safetyPlan: document.getElementById('safetyPlanBtn'),
+            warningSigns: document.getElementById('warningSignsBtn'),
+            helpSomeone: document.getElementById('helpSomeoneBtn'),
+            legalResources: document.getElementById('legalResourcesBtn'),
+            healing: document.getElementById('healingBtn')
+        };
+        
+        // Open modals
+        buttons.safetyPlan.addEventListener('click', () => modals.safetyPlan.style.display = "block");
+        buttons.warningSigns.addEventListener('click', () => modals.warningSigns.style.display = "block");
+        buttons.helpSomeone.addEventListener('click', () => modals.helpSomeone.style.display = "block");
+        
+        // Not implemented modals with alert
+        buttons.legalResources.addEventListener('click', () => alert("Legal resources section is under development. Please check back soon."));
+        buttons.healing.addEventListener('click', () => alert("Healing & recovery resources section is under development. Please check back soon."));
+        
+        // Close modal when clicking X
+        const closeButtons = document.getElementsByClassName("close-button");
+        for (let i = 0; i < closeButtons.length; i++) {
+            closeButtons[i].addEventListener('click', function() {
+                this.parentElement.parentElement.style.display = "none";
+            });
+        }
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            for (const key in modals) {
+                if (event.target == modals[key]) {
+                    modals[key].style.display = "none";
+                }
+            }
+        });
+        
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Escape key functionality
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                for (const key in modals) {
+                    modals[key].style.display = "none";
+                }
+            }
+        });
+    </script>
+</body>
+</html>
